@@ -1,26 +1,14 @@
 import './App.css';
 
+import First from "./First";
+import Html from "./Html";
+
+
 function App() {
     return (
         <div className="App">
             <First />
             <Html />
-        </div>
-    );
-}
-
-function First() {
-    return (
-        <div className="first">
-            first
-        </div>
-    );
-}
-
-function Html() {
-    return (
-        <div className="html">
-            html
         </div>
     );
 }
