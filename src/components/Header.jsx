@@ -1,9 +1,11 @@
+import style from './Header.module.css';
+
 const Header = () => {
     return (
-        <header className="header">
+        <header className={style.header}>
             <div className="container">
-                <div className="header__content">
-                    <div className="header__logo">
+                <div className={style.content}>
+                    <div className={style.logo}>
                         <img src="https://www.pngplay.com/wp-content/uploads/9/HP-Logo-Transparent-Background.png" alt=""/>
                     </div>
                 </div>
