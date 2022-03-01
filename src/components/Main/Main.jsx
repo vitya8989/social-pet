@@ -1,5 +1,5 @@
-import Nav from "./Nav";
-import Profile from "./Profile";
+import Nav from "./Nav/Nav";
+import Profile from "./Profile/Profile";
 import style from './Main.module.css';
 
 
