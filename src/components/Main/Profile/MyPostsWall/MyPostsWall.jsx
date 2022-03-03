@@ -14,9 +14,9 @@ const MyPostsWall = () => {
                 </form>
             </div>
             <div className={style.wall_posts}>
-               <MyPost />
-               <MyPost />
-               <MyPost />
+               <MyPost text='Привет, это мой первый пост' count_likes="3" />
+               <MyPost text='Привет, это мой второй пост' count_likes="4" />
+               <MyPost text='Привет, это мой третий пост' count_likes="8" />
             </div>
         </div>
     );
