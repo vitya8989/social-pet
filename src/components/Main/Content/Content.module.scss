@@ -1,0 +1,10 @@
+@import "src/variables";
+
+.content {
+    margin-left: auto;
+    width: calc(100% - 240px);
+    @media ($tablet3) {
+        width: 100%;
+    }
+}
+

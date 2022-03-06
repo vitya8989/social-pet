@@ -1,4 +1,4 @@
-import style from './MyPost.module.css';
+import style from './MyPost.module.scss';
 
 const MyPost = (props) => {
     return (

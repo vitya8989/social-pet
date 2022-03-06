@@ -1,16 +1,19 @@
-import style from './Nav.module.css';
+import style from './Nav.module.scss';
+import { NavLink } from 'react-router-dom';
+
+const setActive = ({ isActive }) => isActive ? style.active : "";
 
 const Nav = () => {
     return (
         <nav className={style.nav}>
             <div>
-                <div className={`${style.link} ${style.active}`}><a href="#">Моя страница</a></div>
-                <div className={style.link}><a href="#">Сообщения</a></div>
-                <div className={style.link}><a href="#">Новости</a></div>
-                <div className={style.link}><a href="#">Музыка</a></div>
+                <div className={style.link}><NavLink to="/" className={setActive}>Моя страница</NavLink></div>
+                <div className={style.link}><NavLink to="/dialogs" className={setActive}>Сообщения</NavLink></div>
+                <div className={style.link}><NavLink to="/news" className={setActive}>Новости</NavLink></div>
+                <div className={style.link}><NavLink to="/music" className={setActive}>Музыка</NavLink></div>
             </div>
             <div className={style.links_bottom}>
-                <div className={style.link}><a href="#">Настройки</a></div>
+                <div className={style.link}><NavLink to="/settings" className={setActive}>Настройки</NavLink></div>
             </div>
         </nav>
     );

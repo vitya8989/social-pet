@@ -1,4 +1,4 @@
-import style from './MyPostsWall.module.css';
+import style from './MyPostsWall.module.scss';
 import MyPost from "./MyPost/MyPost";
 
 const MyPostsWall = () => {

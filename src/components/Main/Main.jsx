@@ -1,6 +1,6 @@
 import Nav from "./Nav/Nav";
-import Profile from "./Profile/Profile";
-import style from './Main.module.css';
+import style from './Main.module.scss';
+import Content from "./Content/Content";
 
 
 const Main = () => {
@@ -9,7 +9,7 @@ const Main = () => {
             <div className="container">
                 <div className={style.content}>
                     <Nav />
-                    <Profile />
+                    <Content />
                 </div>
             </div>
         </main>
