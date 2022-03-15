@@ -1,7 +1,10 @@
 import style from './MyPostsWall.module.scss';
 import MyPost from "./MyPost/MyPost";
 
-const MyPostsWall = () => {
+const MyPostsWall = (props) => {
+
+    let myPostsElements = props.myPostsData.map( myPost => <MyPost text={myPost.text} count_likes={myPost.countLikes} /> )
+
     return (
         <div className={style.wall}>
             <div className={style.wall_title}>Моя стена</div>
@@ -14,9 +17,7 @@ const MyPostsWall = () => {
                 </form>
             </div>
             <div className={style.wall_posts}>
-               <MyPost text='Привет, это мой первый пост' count_likes="3" />
-               <MyPost text='Привет, это мой второй пост' count_likes="4" />
-               <MyPost text='Привет, это мой третий пост' count_likes="8" />
+                { myPostsElements }
             </div>
         </div>
     );

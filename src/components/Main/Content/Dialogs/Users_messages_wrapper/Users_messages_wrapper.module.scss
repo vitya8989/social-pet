@@ -1,0 +1,20 @@
+@import "src/variables";
+
+.users_messages_wrapper{
+  position: fixed;
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+  top: 120px;
+  padding-left: 20px;
+  border-left: 2px solid gray;
+
+  @media ($desktopMax) {
+    left: calc((100vw - 1200px) / 2 + 500px);
+    width: calc(100% - 500px - (100vw - 1200px) / 2);
+    padding-right: calc((100vw - 1200px) / 2);
+  }
+  @media ($desktop) {
+    width: calc(100% - 510px);
+    left: 510px;
+  }
+}
