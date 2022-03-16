@@ -5,8 +5,8 @@ import Users_messages_wrapper from "./Users_messages_wrapper/Users_messages_wrap
 const Dialogs = (props) => {
     return (
         <div className={style.dialogs}>
-            <Users_list usersData={props.dialogsData.usersData}/>
-            <Users_messages_wrapper usersMessagesData={props.dialogsData.usersMessagesData}/>
+            <Users_list users={props.dialogs.users}/>
+            <Users_messages_wrapper usersMessages={props.dialogs.usersMessages}/>
         </div>
     );
 }

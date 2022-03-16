@@ -3,7 +3,7 @@ import MyPost from "./MyPost/MyPost";
 
 const MyPostsWall = (props) => {
 
-    let myPostsElements = props.myPostsData.map( myPost => <MyPost text={myPost.text} count_likes={myPost.countLikes} /> )
+    let myPostsElements = props.myPosts.map( myPost => <MyPost text={myPost.text} count_likes={myPost.countLikes} /> )
 
     return (
         <div className={style.wall}>

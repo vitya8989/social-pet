@@ -6,7 +6,7 @@ import Messages_default from "./Messages_default/Messages_default";
 const Users_messages_wrapper = (props) => {
     return (
         <div className={style.users_messages_wrapper}>
-            <Users_messages usersMessagesData={props.usersMessagesData}/>
+            <Users_messages usersMessages={props.usersMessages}/>
         </div>
     );
 }

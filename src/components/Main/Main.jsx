@@ -9,7 +9,7 @@ const Main = (props) => {
             <div className="container">
                 <div className={style.content}>
                     <Nav />
-                    <Content profileData={props.profileData} dialogsData={props.dialogsData}/>
+                    <Content state={props.state}/>
                 </div>
             </div>
         </main>

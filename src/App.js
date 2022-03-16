@@ -8,7 +8,7 @@ function App(props) {
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header />
-                <Main profileData={props.profileData} dialogsData={props.dialogsData}/>
+                <Main state={props.state}/>
             </div>
         </BrowserRouter>
     );

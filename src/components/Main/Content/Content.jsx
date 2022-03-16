@@ -11,9 +11,9 @@ const Content = (props) => {
     return (
         <div className={style.content}>
             <Routes>
-                <Route path="*" element={<Profile profileData={props.profileData}/>} />
-                <Route path="/" element={<Profile profileData={props.profileData}/>} />
-                <Route path="/dialogs/*" element={<Dialogs dialogsData={props.dialogsData}/>} />
+                <Route path="*" element={<Profile profile={props.state.profile}/>} />
+                <Route path="/" element={<Profile profile={props.state.profile}/>} />
+                <Route path="/dialogs/*" element={<Dialogs dialogs={props.state.dialogs}/>} />
                 <Route path="/news" element={<News />} />
                 <Route path="/music" element={<Music />} />
                 <Route path="/settings" element={<Settings />} />
