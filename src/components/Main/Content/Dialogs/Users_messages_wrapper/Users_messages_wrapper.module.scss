@@ -9,11 +9,12 @@
   border-left: 2px solid gray;
 
   @media ($desktopMax) {
-    left: calc((100vw - 1200px) / 2 + 500px);
-    width: calc(100% - 500px - (100vw - 1200px) / 2);
-    padding-right: calc((100vw - 1200px) / 2);
+    left: calc((100vw - 1200px) / 2 + 510px);
+    width: calc(100% - 510px - (100vw - 1200px) / 2);
+    padding-right: calc((100vw - 1200px) / 2 + 20px);
   }
   @media ($desktop) {
+    padding-right: 20px;
     width: calc(100% - 510px);
     left: 510px;
   }

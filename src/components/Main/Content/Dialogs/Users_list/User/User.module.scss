@@ -1,11 +1,35 @@
+.user_wr {
+  padding-bottom: 10px;
+}
+
 .user {
+  display: block;
+  padding: 0 15px;
+  border-radius: 15px;
+  transition: 0.2s;
+  &:hover {
+    background: lightcyan;
+  }
+  &.active {
+    background: lightgreen;
+    pointer-events: none;
+  }
+}
+
+.user_row {
+  height: 80px;
   display: flex;
   align-items: center;
-  font-size: 40px;
-  background: red;
-  margin-bottom: 40px;
-  height: 80px;
-  &.active {
-    background: blue;
-  }
+  border-bottom: 1px solid gray;
+}
+
+.user_img {
+  margin-right: 15px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.user_name {
+  font-size: 18px;
 }

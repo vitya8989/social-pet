@@ -5,9 +5,12 @@ const setActiveUser = ({ isActive }) => style.user + " " + (isActive ? style.act
 
 const User = (props) => {
     return (
-        <div>
+        <div className={style.user_wr}>
             <NavLink to={"/dialogs/" + props.id}  className={setActiveUser} >
-                {props.name}
+                <div className={style.user_row}>
+                    <img src={props.img} alt="" className={style.user_img}/>
+                    <div className={style.user_name}>{props.name}</div>
+                </div>
             </NavLink>
         </div>
     );

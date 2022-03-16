@@ -1,3 +1,33 @@
 .users_message {
-  font-size: 30px;
+  display: flex;
+
+  &.incoming {
+    justify-content: flex-end;
+  }
+}
+
+.users_message_content {
+  font-size: 22px;
+  display: flex;
+
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  background: lightpink;
+  border-radius: 20px;
+
+  img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right:  20px;
+    border-radius: 50%;
+  }
+
+  &.incoming {
+    background: lightblue;
+  }
+}
+
+.users_message_text {
+  align-self: center;
 }
