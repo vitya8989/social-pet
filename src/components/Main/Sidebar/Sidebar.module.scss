@@ -1,0 +1,13 @@
+@import "src/variables";
+
+.sidebar {
+    background: yellow;
+    width: 220px;
+    min-height: 100%;
+    padding: 20px;
+    top: 120px;
+    position: fixed;
+    transition: 0.3s;
+    z-index: 2;
+}
+

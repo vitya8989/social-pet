@@ -5,7 +5,7 @@ const setActive = ({ isActive }) => isActive ? style.active : "";
 
 const Nav = () => {
     return (
-        <nav className={style.nav}>
+        <nav>
             <div>
                 <div className={style.link}><NavLink to="/" className={setActive}>Моя страница</NavLink></div>
                 <div className={style.link}><NavLink to="/dialogs" className={setActive}>Сообщения</NavLink></div>

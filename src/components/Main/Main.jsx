@@ -1,4 +1,4 @@
-import Nav from "./Nav/Nav";
+import Sidebar from "./Sidebar/Sidebar";
 import style from './Main.module.scss';
 import Content from "./Content/Content";
 
@@ -8,7 +8,7 @@ const Main = (props) => {
         <main className={style.main}>
             <div className="container">
                 <div className={style.content}>
-                    <Nav />
+                    <Sidebar sidebar={props.state.sidebar}/>
                     <Content state={props.state}/>
                 </div>
             </div>

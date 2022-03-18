@@ -1,19 +1,5 @@
 @import "src/variables";
 
-.nav {
-    background: yellow;
-    width: 220px;
-    min-height: 100%;
-    padding: 20px;
-    top: 120px;
-    position: fixed;
-    transition: 0.3s;
-    z-index: 2;
-
-    @media ($tablet3) {
-        min-height: 0;
-    }
-}
 .links_bottom {
     margin-top: 30px;
 }
