@@ -12,7 +12,7 @@ const Content = (props) => {
         <div className={style.content}>
             <Routes>
                 <Route path="*" element={<Profile profile={props.state.profile}/>} />
-                <Route path="/" element={<Profile profile={props.state.profile}/>} />
+                <Route path="/profile" element={<Profile profile={props.state.profile}/>} />
                 <Route path="/dialogs/*" element={<Dialogs dialogs={props.state.dialogs}/>} />
                 <Route path="/news" element={<News />} />
                 <Route path="/music" element={<Music />} />
