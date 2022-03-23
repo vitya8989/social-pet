@@ -1,4 +1,48 @@
+@import "src/variables";
+
 .users_messages {
   min-height: 100%;
   position: relative;
+}
+.users_messages_panel {
+  position: fixed;
+  bottom: 0;
+  height: 100px;
+  margin-left: -20px;
+  background: lightgreen;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+
+
+  @media ($desktopMax) {
+    width: calc(100% - 510px - (100vw - 1200px) / 2);
+  }
+  @media ($desktop) {
+    width: calc(100% - 510px);
+  }
+
+  textarea {
+    resize: none;
+    width: 80%;
+    height: 60px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  button {
+    width: calc(20% - 20px);
+    margin-left: 20px;
+    height: 60px;
+    border-radius: 10px;
+    background: cornflowerblue;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: beige;
+    transition: 0.3s;
+    &:hover {
+      background: blueviolet;
+      color: #ffffff;
+    }
+  }
 }
