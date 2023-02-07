@@ -3,6 +3,9 @@
 .users_messages {
   min-height: 100%;
   position: relative;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
 }
 .users_messages_panel {
   position: fixed;

@@ -8,8 +8,8 @@ const Main = (props) => {
         <main className={style.main}>
             <div className="container">
                 <div className={style.content}>
-                    <Sidebar sidebar={props.state.sidebar}/>
-                    <Content state={props.state}/>
+                    <Sidebar store={props.store}/>
+                    <Content store={props.store}/>
                 </div>
             </div>
         </main>

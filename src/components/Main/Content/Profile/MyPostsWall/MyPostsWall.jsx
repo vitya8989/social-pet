@@ -1,24 +1,25 @@
 import style from './MyPostsWall.module.scss';
 import MyPost from "./MyPost/MyPost";
-import React from 'react';
 
 const MyPostsWall = (props) => {
+    let myPostsElements = props.profile.myPosts.map( myPost => <MyPost text={myPost.text} count_likes={myPost.countLikes} key={myPost.id} id={myPost.id}/> )
 
-    let myPostsElements = props.myPosts.map( myPost => <MyPost text={myPost.text} count_likes={myPost.countLikes} /> )
-
-    let newPost = React.createRef();
-
-    const addPost = () => {
-        let textContent = newPost.current.value;
-        alert(textContent);
+    const addPost = (e) => {
+        e.preventDefault();
+        props.addPost();
     };
+
+    const onPostChange = (e) => {
+        let updateText = e.target.value;
+        props.onPostChange(updateText);
+    }
 
     return (
         <div className={style.wall}>
             <div className={style.wall_title}>Моя стена</div>
             <div className={style.wall_form_wr}>
-                <form action="">
-                    <textarea ref={ newPost } className={style.wall_textarea}></textarea>
+                <form action="" name="newPost">
+                    <textarea className={style.wall_textarea} value={props.profile.newPostText} onChange={onPostChange}/>
                     <div className={style.wall_btn_wr}>
                         <button className={style.wall_btn} onClick={ addPost }>Опубликовать</button>
                     </div>

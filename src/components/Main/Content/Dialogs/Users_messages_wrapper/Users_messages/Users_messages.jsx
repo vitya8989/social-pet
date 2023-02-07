@@ -4,22 +4,23 @@ import Empty_message from "./Empty_message/Empty_message";
 import React from 'react';
 
 const Users_messages = (props) => {
-
-    let usersMessagesElements = (props.usersMessages.length > 0) ? props.usersMessages.map((userMessage) => <Users_message text={userMessage.text} incoming={userMessage.incoming} img={userMessage.img}/>) : <Empty_message />;
-
-    let newMessageEl = React.createRef();
+    let usersMessagesElements = props.dialogs.usersMessages.length > 0 ? props.dialogs.usersMessages.map((userMessage, index) => <Users_message text={userMessage.text} incoming={userMessage.incoming} img={userMessage.img} key={index}/>) : <Empty_message />;
 
     let sendMessage = (e) => {
         e.preventDefault();
-        let textMessage = newMessageEl.current.value;
-        alert(textMessage);
+        props.sendMessage();
+    }
+
+    const updateMessageText = (e) => {
+        let updateText = e.target.value;
+        props.updateMessageText(updateText);
     }
 
     return (
         <div className={style.users_messages}>
                 {usersMessagesElements}
                 <form className={style.users_messages_panel}>
-                    <textarea ref={newMessageEl}></textarea>
+                    <textarea value={props.dialogs.newMessageText} onChange={updateMessageText}></textarea>
                     <button onClick={ sendMessage }>Отправить</button>
                 </form>
         </div>
