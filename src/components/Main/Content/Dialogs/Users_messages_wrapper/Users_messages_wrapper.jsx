@@ -10,7 +10,7 @@ const Users_messages_wrapper = (props) => {
     return (
         <div className={style.users_messages_wrapper}>
             {/*{dialogNotChosen && <Messages_default />}*/}
-            {dialogChosen && <Users_messagesContainer store={props.store}/>}
+            {dialogChosen && <Users_messagesContainer />}
         </div>
     );
 }

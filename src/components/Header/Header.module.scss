@@ -8,6 +8,7 @@
 .content {
     height: 100px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 .logo {
@@ -17,4 +18,8 @@
 .logo img {
     width: 100%;
     height: 100%;
+}
+.loginLink {
+    color: #ffffff;
+    font-size: 20px;
 }

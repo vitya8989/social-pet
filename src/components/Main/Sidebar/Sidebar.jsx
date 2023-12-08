@@ -7,7 +7,7 @@ const Sidebar = (props) => {
     return (
         <div className={style.sidebar}>
             <Nav />
-            <FriendsContainer store={props.store}/>
+            <FriendsContainer />
         </div>
     );
 }

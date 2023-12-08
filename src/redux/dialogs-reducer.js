@@ -110,7 +110,6 @@ let initialState = {
             text: 'Пока!'
         },
     ],
-    newMessageText: '',
 };
 
 const dialogsReducer = (state = initialState, action) => {
@@ -119,26 +118,20 @@ const dialogsReducer = (state = initialState, action) => {
             let newMessage = {
                 img: 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg',
                 incoming: false,
-                text: state.newMessageText,
+                text: action.text,
             }
-            state.usersMessages.push(newMessage);
-            state.newMessageText = '';
-            return state;
-        case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.text;
-            return state;
+            return {
+                ...state,
+                usersMessages: [...state.usersMessages, newMessage],
+            }
         default:
             return state;
     }
 }
 
-export const AMActionCreator = () => ({
-    type: ADD_MESSAGE
-})
-
-export const UNMTActionCreator = (text) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    text: text
+export const AMActionCreator = (text) => ({
+    type: ADD_MESSAGE,
+    text
 })
 
 export default dialogsReducer;

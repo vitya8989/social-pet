@@ -1,12 +1,16 @@
 import style from './Dialogs.module.scss';
-import Users_list from "./Users_list/Users_list";
 import Users_messages_wrapper from "./Users_messages_wrapper/Users_messages_wrapper";
+import Users_listContainer from "./Users_list/Users_listContainer";
+import { Navigate } from "react-router-dom";
 
 const Dialogs = (props) => {
+
+    if (!props.isLogin) return <Navigate to={'/login'} />;
+
     return (
         <div className={style.dialogs}>
-            <Users_list users={props.store.getState().dialogs.users}/>
-            <Users_messages_wrapper store={props.store}/>
+            <Users_listContainer />
+            <Users_messages_wrapper />
         </div>
     );
 }

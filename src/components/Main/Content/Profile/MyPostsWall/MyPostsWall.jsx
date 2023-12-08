@@ -1,30 +1,37 @@
 import style from './MyPostsWall.module.scss';
 import MyPost from "./MyPost/MyPost";
+import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../../../utils/validators/validators";
+import {Textarea} from "../../../../common/FormsControls/FormsControls";
+
+const maxLength = maxLengthCreator(10);
+
+const NewPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component={Textarea} validate={[required, maxLength]} name={'newPostText'} className={style.wall_textarea} placeholder={'Your text'}/>
+            <div className={style.wall_btn_wr}>
+                <button className={style.wall_btn}>Опубликовать</button>
+            </div>
+        </form>
+    )
+}
+
+const NewPostReduxForm = reduxForm({form: 'newPost'})(NewPostForm)
 
 const MyPostsWall = (props) => {
-    let myPostsElements = props.profile.myPosts.map( myPost => <MyPost text={myPost.text} count_likes={myPost.countLikes} key={myPost.id} id={myPost.id}/> )
+    let myPostsElements = props.profile.myPosts.map( myPost => <MyPost img={props.profile.profile?.photos?.small ? props.profile.profile?.photos?.small : 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg'} text={myPost.text} count_likes={myPost.countLikes} key={myPost.id} id={myPost.id}/> )
 
-    const addPost = (e) => {
-        e.preventDefault();
-        props.addPost();
+    const onSubmit = (formData) => {
+        props.addPost(formData.newPostText);
     };
-
-    const onPostChange = (e) => {
-        let updateText = e.target.value;
-        props.onPostChange(updateText);
-    }
 
     return (
         <div className={style.wall}>
             <div className={style.wall_title}>Моя стена</div>
-            <div className={style.wall_form_wr}>
-                <form action="" name="newPost">
-                    <textarea className={style.wall_textarea} value={props.profile.newPostText} onChange={onPostChange}/>
-                    <div className={style.wall_btn_wr}>
-                        <button className={style.wall_btn} onClick={ addPost }>Опубликовать</button>
-                    </div>
-                </form>
-            </div>
+            {!props.profile.profile?.userId && <div className={style.wall_form_wr}>
+                <NewPostReduxForm onSubmit={onSubmit} />
+            </div>}
             <div className={style.wall_posts}>
                 { myPostsElements }
             </div>

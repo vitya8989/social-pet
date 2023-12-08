@@ -1,21 +1,22 @@
 import MyPostsWall from "./MyPostsWall";
 import React from 'react';
-import {APActionCreator, UNPTActionCreator} from "../../../../../redux/profile-reducer";
+import {APActionCreator} from "../../../../../redux/profile-reducer";
+import {connect} from "react-redux";
 
-const MyPostsWallContainer = (props) => {
-    const addPost = () => {
-        let action = APActionCreator();
-        props.store.dispatch(action);
-    };
-
-    const onPostChange = (updateText) => {
-        let action = UNPTActionCreator(updateText);
-        props.store.dispatch(action);
+let mapStateToProps = (state) => {
+    return {
+        profile: state.profile,
     }
-
-    return (
-        <MyPostsWall profile={props.store.getState().profile} addPost={addPost} onPostChange={onPostChange} />
-    );
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addPost: (text) => {
+            dispatch(APActionCreator(text));
+        },
+    }
+}
+
+const MyPostsWallContainer = connect(mapStateToProps, mapDispatchToProps)(MyPostsWall);
 
 export default MyPostsWallContainer;

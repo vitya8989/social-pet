@@ -25,14 +25,6 @@
     width: calc(100% - 510px);
   }
 
-  textarea {
-    resize: none;
-    width: 80%;
-    height: 60px;
-    border-radius: 10px;
-    padding: 10px;
-  }
-
   button {
     width: calc(20% - 20px);
     margin-left: 20px;
@@ -47,5 +39,15 @@
       background: blueviolet;
       color: #ffffff;
     }
+  }
+}
+.users_messages_textarea {
+  width: 80%;
+  height: 60px;
+  textarea {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 10px;
   }
 }

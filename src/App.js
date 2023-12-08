@@ -1,16 +1,13 @@
 import './App.scss';
-import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
-import { BrowserRouter } from 'react-router-dom';
+import HeaderContainer from "./components/Header/HeaderContainer";
 
-function App(props) {
+function App() {
     return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <Header />
-                <Main store={props.store}/>
-            </div>
-        </BrowserRouter>
+        <div className="app-wrapper">
+            <HeaderContainer />
+            <Main />
+        </div>
     );
 }
 

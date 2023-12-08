@@ -5,7 +5,7 @@ const MyPost = (props) => {
         <div className={style.wall_post}>
             <div className={style.wall_post_left}>
                 <div className={style.wall_post_author}>
-                    <img src="https://klike.net/uploads/posts/2019-03/1551511801_1.jpg" alt=""/>
+                    <img src={props.img} alt=""/>
                 </div>
                 <div>
                     <button className={style.like_btn}>
