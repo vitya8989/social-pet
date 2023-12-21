@@ -41,35 +41,37 @@ export const setIsFetching = (isFetching) => ({
     isFetching: isFetching,
 });
 
-export const authCheck = () => (dispatch) => {
-    authAPI.auth().then((data) => {
-        if (data.resultCode === 0) {
-            let {id, email, login} = data.data;
-            dispatch(setUserData(id, email, login, true));
-            dispatch(setIsFetching(false));
-        }
-    });
-}
+export const authCheck = () => async (dispatch) => {
+    let response = await authAPI.auth();
 
-export const authLogin = (formData) => (dispatch) => {
-    authAPI.login(formData).then((data) => {
-        if (data.resultCode === 0) {
-            dispatch(authCheck());
-        } else {
-            dispatch(setIsFetching(false));
-            let message = data.messages.length ? data.messages[0] : 'Что-то пошло не так';
-            dispatch(stopSubmit('login', {_error: message}));
-        }
-    });
-}
-
-export const authLogout = () => (dispatch) => {
-    authAPI.logout().then((data) => {
-        if (data.resultCode === 0) {
-            dispatch(setUserData(null, null, null, false));
-        }
+    if (response.resultCode === 0) {
+        let {id, email, login} = response.data;
+        dispatch(setUserData(id, email, login, true));
         dispatch(setIsFetching(false));
-    });
+    }
+
+}
+
+export const authLogin = (formData) => async (dispatch) => {
+    let response = await authAPI.login(formData);
+
+    if (response.resultCode === 0) {
+        dispatch(authCheck());
+    } else {
+        dispatch(setIsFetching(false));
+        let message = response.messages.length ? response.messages[0] : 'Что-то пошло не так';
+        dispatch(stopSubmit('login', {_error: message}));
+    }
+
+}
+
+export const authLogout = () => async (dispatch) => {
+    let response = await authAPI.logout();
+    if (response.resultCode === 0) {
+        dispatch(setUserData(null, null, null, false));
+    }
+    dispatch(setIsFetching(false));
+
 }
 
 export default authReducer;

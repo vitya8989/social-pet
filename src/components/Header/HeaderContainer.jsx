@@ -1,15 +1,11 @@
 import React from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
-import {authCheck, authLogout, setIsFetching} from "../../redux/auth-reducer";
+import {authLogout, setIsFetching} from "../../redux/auth-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
 
 class HeaderContainer extends React.Component {
-
-    componentDidMount() {
-        this.props.authCheck()
-    }
 
     render() {
         return <>
@@ -24,4 +20,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default compose(connect(mapStateToProps, {authCheck, authLogout, setIsFetching}))(HeaderContainer);
+export default compose(connect(mapStateToProps, {authLogout, setIsFetching}))(HeaderContainer);

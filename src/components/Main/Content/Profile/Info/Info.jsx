@@ -1,6 +1,7 @@
 import style from './Info.module.scss';
 import Preloader from "../../../../common/Preloader/Preloader";
-import Status from "../Status/Status";
+// import Status from "../Status/Status";
+import StatusWithHooks from "../Status/StatusWithHooks";
 
 const Info = (props) => {
     if (!props.profile) {
@@ -31,7 +32,7 @@ const Info = (props) => {
                     </div>
                 </div>
             </div>
-            <Status status={props.status} updateStatus={props.updateStatus}/>
+            <StatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
         </>
     );
 }

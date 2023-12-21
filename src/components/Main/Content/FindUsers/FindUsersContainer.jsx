@@ -10,6 +10,13 @@ import FindUsers from "./FindUsers";
 import Preloader from "../../../common/Preloader/Preloader";
 import {withAuthRedirect} from "../../../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFindUsersList, getFindUsersListSuper, getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+} from "../../../../redux/findUsers-selectors";
 
 class FindUsersContainer extends React.Component {
 
@@ -42,17 +49,17 @@ class FindUsersContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        findUsersList: state.findUsersPage.findUsersList,
-        pageSize: state.findUsersPage.pageSize,
-        totalUsersCount: state.findUsersPage.totalUsersCount,
-        currentPage: state.findUsersPage.currentPage,
-        isFetching: state.findUsersPage.isFetching,
+        findUsersList: getFindUsersListSuper(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
         myId: state.auth.id,
-        followingInProgress: state.findUsersPage.followingInProgress,
+        followingInProgress: getFollowingInProgress(state),
     }
 }
 
 export default compose(
     connect(mapStateToProps, {setCurrentPage, getUsers, follow, unfollow}),
-    withAuthRedirect
+    // withAuthRedirect
 )(FindUsersContainer)
