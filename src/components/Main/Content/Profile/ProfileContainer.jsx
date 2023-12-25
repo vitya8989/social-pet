@@ -7,7 +7,7 @@ import {withAuthRedirect} from "../../../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 const withRouter = (Component) => (props) => {
-    let params = useParams();
+     let params = useParams();
     return (
         <Component
             {...props}
