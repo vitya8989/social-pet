@@ -1,9 +1,11 @@
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
-const DELETE_POST = 'DELETE_POST'
+const DELETE_POST = 'DELETE_POST';
+const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
 
 let initialState = {
     profile: null,
@@ -54,6 +56,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 myPosts: state.myPosts.filter(p => p.id !== action.id),
             }
+        case SAVE_PHOTO_SUCCESS:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos},
+            }
         default:
             return state;
     }
@@ -67,8 +74,6 @@ export const deletePost = (id) => ({
     type: DELETE_POST,
     id
 });
-
-
 export const setUserProfile = (profile) => ({
     type: SET_USER_PROFILE,
     profile
@@ -78,37 +83,42 @@ export const setStatus = (status) => ({
     type: SET_STATUS,
     status
 });
+export const savePhotoSuccess = (photos) => ({
+    type: SAVE_PHOTO_SUCCESS,
+    photos
+});
+
 
 export const getUserProfileData = (userId) => (dispatch) => {
-    if (userId) {
-        dispatch(setUserProfile(null))
-        profileAPI.getUserProfile(userId).then((data) => {
-            dispatch(setUserProfile(data));
-        });
-    } else {
-        dispatch(setUserProfile({
-            aboutMe: 'Учу реакт',
-            contacts: {
-                facebook: 'facebook.com/vitya',
-                github: 'github.com/vitya8989',
-                instagram: null,
-                mainLink: null,
-                twitter: null,
-                vk: 'vk.com',
-                website: 'socialPet',
-                youtube: null,
-            },
-            fullName: 'Виктор К.',
-            lookingForAJob: false,
-            lookingForAJobDescription: null,
-            photos: {
-                large: null,
-                small: 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg'
-            },
-            userId: null
-        }));
-    }
+    dispatch(setUserProfile(null))
+    profileAPI.getUserProfile(userId).then((data) => {
+        dispatch(setUserProfile(data));
+    });
 }
+
+
+// dispatch(setUserProfile({
+//     aboutMe: 'Учу реакт',
+//     contacts: {
+//         facebook: 'facebook.com/vitya',
+//         github: 'github.com/vitya8989',
+//         instagram: null,
+//         mainLink: null,
+//         twitter: null,
+//         vk: 'vk.com',
+//         website: 'socialPet',
+//         youtube: null,
+//     },
+//     fullName: 'Виктор К.',
+//     lookingForAJob: false,
+//     lookingForAJobDescription: null,
+//     photos: {
+//         large: null,
+//         small: 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg'
+//     },
+//     userId: null
+// }));
+
 
 export const getStatus = (userId) => (dispatch) => {
     if (userId) {
@@ -130,5 +140,31 @@ export const updateStatus = (status) => (dispatch) => {
         }
     });
 }
+
+export const savePhoto = (file) => (dispatch) => {
+    profileAPI.savePhoto(file).then((data) => {
+        if (data.resultCode === 0) {
+            dispatch(savePhotoSuccess(data.data.photos));
+        } else {
+            alert('ошибка');
+        }
+    });
+}
+export const saveProfile = (profile) => (dispatch, getState) => {
+    profileAPI.saveProfile(profile).then((data) => {
+        if (data.resultCode === 0) {
+            const userId = getState().auth.id;
+            dispatch(getUserProfileData(userId));
+        } else {
+            let message = data.messages.length ? data.messages[0] : 'Что-то пошло не так';
+            //общая ошибка
+            dispatch(stopSubmit('edit-profile', {_error: message}));
+            //для конкретного поля
+            // dispatch(stopSubmit('edit-profile', {'aboutMe': message}));
+            // dispatch(stopSubmit('edit-profile', {'contacts':{'facebook': message}}));
+        }
+    });
+}
+
 
 export default profileReducer;

@@ -1,8 +1,9 @@
-import {authAPI} from "../api/api";
+import {authAPI, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const TOOGLE_IS_FETCHING = 'TOOGLE_IS_FETCHING';
+const GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS';
 
 let initialState = {
     id: null,
@@ -10,6 +11,7 @@ let initialState = {
     login: null,
     isFetching: false,
     isLogin: false,
+    captchaUrl: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -21,6 +23,9 @@ const authReducer = (state = initialState, action) => {
             }
         case TOOGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
+        case GET_CAPTCHA_URL_SUCCESS:
+            return {...state,
+                ...action.payload}
         default:
             return state;
     }
@@ -41,6 +46,11 @@ export const setIsFetching = (isFetching) => ({
     isFetching: isFetching,
 });
 
+export const getCaptchaUrlSuccess = (captchaUrl) => ({
+    type: GET_CAPTCHA_URL_SUCCESS,
+    payload: {captchaUrl},
+});
+
 export const authCheck = () => async (dispatch) => {
     let response = await authAPI.auth();
 
@@ -57,6 +67,8 @@ export const authLogin = (formData) => async (dispatch) => {
 
     if (response.resultCode === 0) {
         dispatch(authCheck());
+    } else if (response.resultCode === 10) {
+        dispatch(getCaptchaUrl());
     } else {
         dispatch(setIsFetching(false));
         let message = response.messages.length ? response.messages[0] : 'Что-то пошло не так';
@@ -71,7 +83,13 @@ export const authLogout = () => async (dispatch) => {
         dispatch(setUserData(null, null, null, false));
     }
     dispatch(setIsFetching(false));
+}
 
+export const getCaptchaUrl = () => async (dispatch) => {
+    const response = await securityAPI.getCaptchaUrl();
+    const captchaUrl = response.url;
+
+    dispatch(getCaptchaUrlSuccess(captchaUrl));
 }
 
 export default authReducer;

@@ -25,6 +25,11 @@ const LoginForm = (props) => {
             <div className={style.login__form_submit}>
                 <button>Send</button>
             </div>
+
+            {props.captchaUrl && <img src={props.captchaUrl}/>}
+            {props.captchaUrl &&  <div className={style.login__form_input}>
+                <Field component={Input} validate={[required]} name={'captcha'} type={'text'} placeholder={'symbols'}/>
+            </div>}
             {props.error && <div className={style.login__form_error}>{props.error}</div>}
         </form>
     )
@@ -40,16 +45,20 @@ const Login = (props) => {
       props.setIsFetching(true);
       props.authLogin(formData);
     };
+    if (props.captchaUrl) {
+        props.setIsFetching(false);
+    }
     return (
         <div className={style.login}>
             <h1 className={style.login__title}>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isLogin
+    isAuth: state.auth.isLogin,
+    captchaUrl: state.auth.captchaUrl
 });
 
 export default connect(mapStateToProps, {authLogin, setIsFetching})(Login)

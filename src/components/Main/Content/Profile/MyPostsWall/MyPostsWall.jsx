@@ -30,7 +30,7 @@ const MyPostsWall = React.memo((props) => {
     return (
         <div className={style.wall}>
             <div className={style.wall_title}>Моя стена</div>
-            {!props.profile.profile?.userId && <div className={style.wall_form_wr}>
+            {props.owner && <div className={style.wall_form_wr}>
                 <NewPostReduxForm onSubmit={onSubmit} />
             </div>}
             <div className={style.wall_posts}>

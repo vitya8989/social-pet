@@ -1,6 +1,6 @@
 import React, {Suspense} from "react";
 import style from './Content.module.scss';
-import { Routes, Route } from "react-router-dom";
+import {Routes, Route, Navigate} from "react-router-dom";
 import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
@@ -17,7 +17,8 @@ const Content = (props) => {
     return (
         <div className={style.content}>
             <Routes>
-                <Route path="/" element={<ProfileContainer />} />
+                <Route exact path="/profile" element={<ProfileContainer />} />
+                <Route path="/" element={<Navigate to="/profile" />} />
                 <Route path="/profile/:userId" element={<ProfileContainer />} />
                 <Route path="/dialogs/*" element={
                     <Suspense fallback={<Preloader />}>
@@ -28,6 +29,7 @@ const Content = (props) => {
                 <Route path="/music" element={<Music />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="*" element={<div>404</div>} />
             </Routes>
         </div>
     );

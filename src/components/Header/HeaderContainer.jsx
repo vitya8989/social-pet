@@ -9,7 +9,7 @@ class HeaderContainer extends React.Component {
 
     render() {
         return <>
-                {this.props.auth.isFetching && <Preloader />}
+                {this.props.isFetching && <Preloader />}
                 <Header {...this.props} />
             </>
     }
@@ -17,7 +17,8 @@ class HeaderContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         auth: state.auth,
+        isFetching: state.auth.isFetching
     }
 }
 
-export default compose(connect(mapStateToProps, {authLogout, setIsFetching}))(HeaderContainer);
+export default connect(mapStateToProps, {authLogout, setIsFetching})(HeaderContainer);
